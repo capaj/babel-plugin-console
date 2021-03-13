@@ -21,14 +21,23 @@ export default (path, template, t) => {
   const { bindings, parameterIdentifiers, returnStatement, signature, variableIdentifiers } = scope;
 
   const mapIdentifer = identifier => {
-    const { loc: { start: { column, line } }, name } = identifier;
+    const {
+      loc: {
+        start: { column, line }
+      },
+      name
+    } = identifier;
     return buildLog(t.stringLiteral(`(${line}:${column})`), t.stringLiteral(`${name}:`), identifier)(1);
   };
   const parameters = parameterIdentifiers.map(mapIdentifer);
   const variables = variableIdentifiers.map(mapIdentifer);
   const buildReturn = returnStatement => {
     if (returnStatement) {
-      const { loc: { start: { column, line } } } = returnStatement;
+      const {
+        loc: {
+          start: { column, line }
+        }
+      } = returnStatement;
       return buildLog(t.stringLiteral(`(${line}:${column})`), returnStatement)(1);
     }
     return buildLog(t.stringLiteral('Void'))(1);
@@ -45,7 +54,12 @@ export default (path, template, t) => {
     .map(key => {
       const binding = bindings[key];
       const { identifier } = binding;
-      const { loc: { start: { column, line } }, name } = identifier;
+      const {
+        loc: {
+          start: { column, line }
+        },
+        name
+      } = identifier;
 
       const isFunction = looksLike(binding, { path: t.isFunctionDeclaration });
       const isArrow = looksLike(binding.path, { node: { init: t.isArrowFunctionExpression } });

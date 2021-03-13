@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-console",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Babel plugin with additional console helper functions",
   "main": "dist/index.js",
   "files": [
@@ -14,8 +14,8 @@
     "lint": "eslint src",
     "lint:fix": "yarn lint -- --fix",
     "precommit": "lint-staged",
-    "prepublish": "yarn build",
     "prettier": "prettier 'src/**/*.js' --write --single-quote=true --print-width=120 --no-config",
+    "prepare": "yarn build",
     "test": "jest",
     "test:coverage": "yarn test -- --coverage",
     "test:report": "codecov",
@@ -83,6 +83,6 @@
     ]
   },
   "dependencies": {
-    "babel-plugin-macros": "^2.0.0"
+    "babel-plugin-macros": "^3.0.1"
   }
 }
